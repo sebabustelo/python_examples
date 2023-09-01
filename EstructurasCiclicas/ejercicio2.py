@@ -4,6 +4,14 @@
 # Tomando en cuenta que si es Martes o Sabado se hace un descuento del 20% sobre el monto tota l.
 # Al finalizar el ingreso de los n vehiculos, el programa debe mostrar cuantos vehiculos permanecieron menos de media hora. 
 
+#El enunciado no aclara si al pasar a otro rango de tarifa se cobra por media hora mas o no, 
+#ejemplo si esta 1 hora y 10 minutos, le fracciona esos 10 minutos como otra media hora y seria 1500 pesos (siempre
+# y cuando no sea un dia con descuento), o solo le cobro 1 hora.
+# En el ejercicio dejamos comentado (#import math, #costo_total += (math.ceil((minutos_totales) / 30)) * 500 ),
+# el código que es necesario si se quiere fraccionar para arriba, por defecto los hacemos para abajo.
+
+#import math
+
 class Estacionamiento:
     def __init__(self, minutos, horas, dia):
         self.minutos = minutos
@@ -20,7 +28,8 @@ class Estacionamiento:
         if (minutos_totales > 10 and minutos_totales < 30):
              costo_total +=  500
         else:
-             costo_total += ((minutos_totales) // 30) * 500
+             costo_total += ((minutos_totales) / 30) * 500
+             #costo_total += (math.ceil((minutos_totales) / 30)) * 500
         
         # Aplica el descuento si es Martes (2) o Sábado (6)
         if self.dia == 2 or self.dia == 6:

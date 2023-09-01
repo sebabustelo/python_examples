@@ -11,6 +11,9 @@ class Fiesta():
             return True
         else:  
             return False
+        
+    def prueba(*listado):
+        print(listado)    
          
     def ingresar_numero(self,nombre):
         numero = input(f"Ingrese un numero entero para {nombre}: ")
@@ -22,6 +25,7 @@ def main():
     
    fiesta = Fiesta()
    
+   #fiesta.prueba("hola","chau")
    n = fiesta.ingresar_numero("n")
    m = fiesta.ingresar_numero("m")
          
