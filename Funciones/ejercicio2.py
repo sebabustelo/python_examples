@@ -4,13 +4,14 @@
 # Permite ingresar un número por consola y válida que sea un entero, si no lo
 # es, vuelve a solicitar que ingrese un número hasta que sea correcto.
 # Recibe por parametro el nombre de que se quiere mostrar por consola en la solicitud.
-# Retorna el número ingresado convertido a entero
+# Retorna el número ingresado convertido a int
 def ingresar_numero(nombre):
-    
-    numero = input(f"Ingrese un numero entero para {nombre}: ")
-    while (not(numero.isdigit())):
-        numero = input(f"Ingrese un numero entero para {nombre}: ")
-    return int(numero)   
+    while True:
+        try:
+            numero = int(input(f"Ingresa un número entero  para {nombre}: "))  # Utilizamos int para admitir números enteros solamente
+            return numero
+        except ValueError:
+            print("Debes ingresar un número válido.") 
     
 def suma_hasta_n(n):
     

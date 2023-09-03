@@ -3,20 +3,22 @@
 # Permite ingresar un número por consola y válida que sea un entero, si no lo
 # es, vuelve a solicitar que ingrese un número hasta que sea correcto.
 # Recibe por parametro el nombre de que se quiere mostrar por consola en la solicitud.
-# Retorna el número ingresado convertido a entero
+# Retorna el número ingresado convertido a float
 def ingresar_numero(nombre):
-    
-    numero = input(f"Ingrese un numero entero para {nombre}: ")
-    while (not(numero.isdigit())):
-        numero = input(f"Ingrese un numero entero para {nombre}: ")
-    return int(numero)  
+    while True:
+        try:
+            numero = float(input(f"Ingresa un número  para {nombre}: "))  # Utilizamos float para admitir números decimales
+            return numero
+        except ValueError:
+            print("Debes ingresar un número válido.")
 
 def buscar_mayor_numero(a, b, c):
     
     if(a > b):
         mayor  = a
     else:
-        mayor = b    
+        mayor = b  
+          
     if(c > mayor):
         mayor = c   
     return mayor        

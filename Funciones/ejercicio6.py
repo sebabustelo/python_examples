@@ -16,11 +16,15 @@ def es_fecha_valida(dia, mes, anio):
     return True
 
 
-dia = int(input("Ingresa el día: "))
-mes = int(input("Ingresa el mes: "))
-anio = int(input("Ingresa el año: "))
+def main():
+    dia = int(input("Ingresa el día: "))
+    mes = int(input("Ingresa el mes: "))
+    anio = int(input("Ingresa el año: "))
 
-if es_fecha_valida(dia, mes, anio):
-    print("La fecha es válida.")
-else:
-    print("La fecha es inválida.")
+    if es_fecha_valida(dia, mes, anio):
+        print("La fecha es válida.")
+    else:
+        print("La fecha es inválida.")
+
+if __name__ == "__main__":
+    main()           

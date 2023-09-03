@@ -3,11 +3,15 @@
 #divisible por 400.
 
 def ingresar_anio():
-    
-    numero = input(f"Ingrese un año para verificar si es bisiesto: ")
-    while (not(numero.isdigit())):
-        numero = input(f"El valor ingresado no es correcto, por favor ingrese un año válido: ")
-    return int(numero) 
+    while True:
+        try:
+            numero = int(input(f"Ingresa un  año para validar si es bisiesto : ")) 
+            if(numero > 0):
+               return numero
+            else:
+               print("Debes ingresar un año, el valor ingresado no es válido.")      
+        except ValueError:
+            print("Debes ingresar un año, el valor ingresado no es válido.")  
 
 def validar_anio_bisiesto(anio):
      
