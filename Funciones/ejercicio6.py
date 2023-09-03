@@ -1,6 +1,11 @@
+#Hacer una función que nos indique con verdadero o falso si una fecha ingresada en el formato día, mes, año
+#es válida o inválida. Considerar los años bisiestos. Desarrollar el código para probarla
+
+import ejercicio5
+
 def es_fecha_valida(dia, mes, anio):
     # Verificar si el año es bisiesto
-    es_bisiesto = (anio % 4 == 0 and anio % 100 != 0) or (anio % 400 == 0)
+    es_bisiesto = ejercicio5.validar_anio_bisiesto(anio)
     
     # Definir la cantidad de días en cada mes
     dias_en_mes = [31, 28 if not es_bisiesto else 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
