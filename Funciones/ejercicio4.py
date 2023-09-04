@@ -1,9 +1,9 @@
 #Escribir una función que reciba un número y valide el ingreso del mismo de modo que vuelva a solicitar el
 #número hasta que este sea positivo.
 
-# Permite ingresar un número por consola y válida que sea un entero, si no lo
+# Permite ingresar un número por consola y válida que sea un número decimal positivo, si no lo
 # es, vuelve a solicitar que ingrese un número hasta que sea correcto.
-# Retorna el número ingresado convertido a int
+# Retorna el número ingresado convertido a float
 def ingresar_numero_positivo():
     while True:
         try:
