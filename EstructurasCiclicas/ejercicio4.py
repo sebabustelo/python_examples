@@ -8,48 +8,57 @@
 #Si da entre 25 y 30 es SOBREPESO.  
 #Si da mayor a 30 es OBESO. 
 
-class Persona:
-    def __init__(self, nombre, peso, altura):
-        self.nombre = nombre
-        self.peso = peso
-        self.altura = altura
+import ejercicio1 as Validador
 
-    def calcular_imc(self):
-        return self.peso / (self.altura ** 2)
 
-    def determinar_categoria(self):
-        imc = self.calcular_imc()
-        if imc < 18.5:
-            return "INFRAPESO"
-        elif 18.5 <= imc < 25:
-            return "NORMAL"
-        elif 25 <= imc < 30:
-            return "SOBREPESO"
-        else:
-            return "OBESO"
+def calcular_imc(peso,altura):
+    return peso / (altura ** 2)
 
-categorias = {
-    "INFRAPESO": 0,
-    "NORMAL": 0,
-    "SOBREPESO": 0,
-    "OBESO": 0
-}
+def determinar_categoria(peso,altura):
+    
+    imc = calcular_imc(peso,altura)
+    if imc < 18.5:
+        return "INFRAPESO"
+    elif 18.5 <= imc < 25:
+        return "NORMAL"
+    elif 25 <= imc < 30:
+        return "SOBREPESO"
+    else:
+        return "OBESO"
 
-personas = []
+def main():
+    for i in range(5):
+        print(f"Persona {i + 1}")
+        nombre = input("Ingrese el nombre de la persona: ")
+        peso = float(input("Ingrese su peso en kg: "))
+        altura = Validador.ingresar_numero_entero_positivo("Ingrese su altura en centimeros : ")
 
-for i in range(150):
-    print(f"Persona {i + 1}")
-    nombre = input("Ingrese el nombre de la persona: ")
-    peso = float(input("Ingrese su peso en kg: "))
-    altura = float(input("Ingrese su altura en metros: "))
+        categoria = determinar_categoria(peso,altura)
+        cantidad_infrapeso = 0
+        cantidad_normal = 0
+        cantidad_sobrepeso = 0
+        cantidad_obeso = 0
+        
+        match categoria:
+            case "INFRAPESO":
+                cantidad_infrapeso = cantidad_infrapeso + 1
+            case "NORMAL":
+                cantidad_normal = cantidad_normal + 1
+            case "SOBREPESO":
+                cantidad_sobrepeso = cantidad_sobrepeso + 1
+            case "OBESO":
+                cantidad_obeso = cantidad_obeso + 1            
+        
 
-    persona = Persona(nombre, peso, altura)
-    categoria = persona.determinar_categoria()
+        print(f"El IMC de {nombre} es {calcular_imc(peso,altura):.2f}, categoría: {categoria}\n")
+        
+        
 
-    print(f"El IMC de {persona.nombre} es {persona.calcular_imc():.2f}, categoría: {categoria}\n")
-    categorias[categoria] += 1
-    personas.append(persona)
-
-print("Resumen:")
-for categoria, cantidad in categorias.items():
-    print(f"{categoria}: {cantidad} personas")
+    print("Resumen:")
+    print(f"INFRAPESO: {cantidad_infrapeso} personas")
+    print(f"NORMAL: {cantidad_normal} personas")
+    print(f"SOBREPESO: {cantidad_sobrepeso} personas")
+    print(f"OBSEO: {cantidad_obeso} personas")
+    
+if __name__ == "__main__":
+    main()

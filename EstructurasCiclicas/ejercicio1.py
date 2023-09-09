@@ -4,26 +4,28 @@
 #Decidio que a cada uno que quiera ingresar le iba a pedir un numero, si este numero esta entre N y M, lo deja entrar, si no, no lo deja. 
 #Indique cuantas personas intentaron ingresar a la fiesta. 
 
-class Fiesta():
-
-    def verificar_numero(self,numero,n,m):
+def verificar_numero(numero,n,m):
         if(numero >= n and numero <= m):
             return True
         else:  
             return False
-                
-    def ingresar_numero(self,nombre):
-        numero = input(f"Ingrese un numero entero para {nombre}: ")
-        while (not(numero.isdigit())):
-          numero = input(f"Ingrese un numero entero para {nombre}: ")
-        return int(numero)  
+                    
+def ingresar_numero_entero_positivo(mensaje):
+    while True:
+        try:
+            numero = int(input(mensaje)) 
+            if (numero > 0):
+                return numero
+            else:
+               print("Debes ingresar un número entero positivo.") 
+            
+        except ValueError:
+            print("Debes ingresar un número entero positivo.")   
                           
 def main():
-    
-   fiesta = Fiesta()
    
-   n = fiesta.ingresar_numero("n")
-   m = fiesta.ingresar_numero("m")
+   n = ingresar_numero_entero_positivo("Ingrese un numero entero para n:")
+   m = ingresar_numero_entero_positivo("Ingrese un numero entero para m:")
          
    numero_ingreso = "" 
    contador_ingresos = 0
@@ -32,11 +34,15 @@ def main():
    while (numero_ingreso != "No"):
        
         numero_ingreso = input("Ingrese un numero para validar el ingreso, 'No' para terminar: ")
-        while (not(numero_ingreso.isdigit()) or numero_ingreso!='No'):
+        
+        while (not(numero_ingreso.isdigit()) and numero_ingreso!='No'):
+           print(not(numero_ingreso.isdigit()))
+           print(numero_ingreso!='No')
+           print(not(numero_ingreso.isdigit()) or numero_ingreso!='No') 
            numero_ingreso = input("Ingrese un numero para validar el ingreso, 'No' para terminar: ")
        
         if(numero_ingreso.isdigit()):
-            numero_valido = fiesta.verificar_numero(int(numero_ingreso),n,m)
+            numero_valido = verificar_numero(int(numero_ingreso),n,m)
             if(numero_valido):
                 contador_ingresos = contador_ingresos +1
             else:
