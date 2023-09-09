@@ -9,36 +9,50 @@
 # Viernes     Marte
 # Sabados     Luna
 
-class Planetario:
-    def __init__(self):
-        self.astro_dia = {
-            "Domingo": "Sol",
-            "Sábado": "Saturno",
-            "Viernes": "Venus",
-            "Jueves": "Júpiter",
-            "Miércoles": "Mercurio",
-            "Martes": "Marte",
-            "Lunes": "Luna"
-        }
+def ingresar_dia_semana(mensaje):
+    while True:
+        try:
+            dia = int(input(mensaje)) 
+            if (dia > 0 and dia <= 7):
+                return dia 
+        except ValueError:
+            print("Ingrese el número de día de la semana (1-7): ")
 
-    def obtener_nombre_astro(self, nombre_dia):
-        return self.astro_dia.get(nombre_dia, "Astro desconocido")
+def obtener_nombre_astro(dia):
+    
+        match dia:
+            case 1:
+                astro = "Sol"
+                nombre_dia = "Domingo"
+            case 2:
+                astro = "Saturno"
+                nombre_dia = "Lunes"
+            case 3:
+                astro = "Venus"
+                nombre_dia = "Martes"
+            case 4:
+                astro = "Jupiter"
+                nombre_dia = "Miercoles"
+            case 5:
+                astro = "Mercurio"
+                nombre_dia = "Jueves"
+            case 6:
+                astro = "Marte"
+                nombre_dia = "Viernes"
+            case 7:
+                astro = "Luna"
+                nombre_dia = "Sabado"
+                    
+        print("Nombre del día:", nombre_dia)
+        print("Astro que da origen al nombre:", astro)    
+        
 
 def main():
-    planetario = Planetario()
 
-    numero_dia = int(input("Ingrese el número de día de la semana (1-7): "))
-
-    while numero_dia < 1 or numero_dia > 7:
-        print("Número de día inválido. Debe estar entre 1 y 7.")
-        numero_dia = int(input("Ingrese el número de día de la semana (1-7): "))
+    numero_dia = ingresar_dia_semana("Ingrese el número de día de la semana (1-7): ")
     
-    dias_semana = list(planetario.astro_dia.keys())
-    nombre_dia = dias_semana[numero_dia - 1]
-    astro = planetario.obtener_nombre_astro(nombre_dia)
+    obtener_nombre_astro(numero_dia)
 
-    print("Nombre del día:", nombre_dia)
-    print("Astro que da origen al nombre:", astro)
 
 if __name__ == "__main__":
     main()

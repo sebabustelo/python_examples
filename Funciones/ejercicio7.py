@@ -14,6 +14,7 @@
 #• Piscis: 20 de febrero al 20 de marzo
 
 import ejercicio1 as Validador
+import ejercicio6 as Fecha
 
 def determinar_signo(dia, mes):
     if (mes == 3 and dia >= 21) or (mes == 4 and dia <= 20):
@@ -44,10 +45,13 @@ def determinar_signo(dia, mes):
 def main():
     dia = Validador.ingresar_numero_entero("Ingrese el día de su cumpleaños: ")
     mes = Validador.ingresar_numero_entero("Ingrese el mes de su cumpleaños (como número): ")
-
-    signo = determinar_signo(dia, mes)
-
-    print("Su signo del zodíaco es:", signo)
+    
+    if(Fecha.es_fecha_valida(dia,mes,2024)):
+        signo = determinar_signo(dia, mes)
+        print("Su signo del zodíaco es:", signo)
+    else:
+        print("La fecha ingresada no es válida")
+    
 
 if __name__ == "__main__":
     main()

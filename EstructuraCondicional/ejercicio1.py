@@ -4,11 +4,21 @@
 #Decidio que a cada uno que quiera ingresar le iba a pedir un numero,
 #si este numero esta entre N y M, lo deja entrar, si no, no lo deja. 
 #Indique cuantas personas intentaron ingresar a la fiesta. 
-class Empresa:
-    def __init__(self) -> None:
-        pass
+
+
+def ingresar_numero_entero_positivo(mensaje):
+    while True:
+        try:
+            numero = int(input(mensaje)) 
+            if (numero > 0):
+                return numero
+            else:
+               print("Debes ingresar un número entero positivo.") 
+            
+        except ValueError:
+            print("Debes ingresar un número entero positivo.")
     
-    def calcular_incremento(self,importe):
+def calcular_incremento(importe):
         if importe >= 900:
             return importe * 2
         elif importe >= 700:
@@ -20,11 +30,8 @@ class Empresa:
 
 def main():
     numero_celular = input("Ingrese el número de celular: ")
-    importe_recarga = float(input("Ingrese el importe de la recarga: "))
-    
-    emp =  Empresa()
-   
-    importe_acreditado =  emp.calcular_incremento(importe_recarga)
+    importe_recarga = ingresar_numero_entero_positivo("Ingrese el importe de la recarga: ")
+    importe_acreditado =  calcular_incremento(importe_recarga)
 
     print("Numero de celular:", numero_celular)
     print("Importe acreditado de la recarga:", importe_acreditado)

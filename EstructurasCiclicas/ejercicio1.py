@@ -32,7 +32,7 @@ def main():
    while (numero_ingreso != "No"):
        
         numero_ingreso = input("Ingrese un numero para validar el ingreso, 'No' para terminar: ")
-        while (not(numero_ingreso.isdigit()) and numero_ingreso!='No'):
+        while (not(numero_ingreso.isdigit()) or numero_ingreso!='No'):
            numero_ingreso = input("Ingrese un numero para validar el ingreso, 'No' para terminar: ")
        
         if(numero_ingreso.isdigit()):
