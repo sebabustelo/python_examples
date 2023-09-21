@@ -45,29 +45,36 @@ class Empresa:
         }
 
         return informe
+    
+def main():
+        
+    empresa = Empresa()
 
-empresa = Empresa()
+    # Leer datos de los empleados
+    for i in range(2):
+        print(f"Empleado {i + 1}")
+        legajo = int(input("Ingrese el legajo del empleado: "))
+        categoria = input("Ingrese la categoría del empleado (A, B o C): ")
+        salario = float(input("Ingrese el salario del empleado: "))
 
-# Leer datos de los empleados
-for i in range(2):
-    print(f"Empleado {i + 1}")
-    legajo = int(input("Ingrese el legajo del empleado: "))
-    categoria = input("Ingrese la categoría del empleado (A, B o C): ")
-    salario = float(input("Ingrese el salario del empleado: "))
+        empleado = Empleado(legajo, categoria, salario)
+        empresa.agregar_empleado(empleado)
 
-    empleado = Empleado(legajo, categoria, salario)
-    empresa.agregar_empleado(empleado)
+    informe = empresa.calcular_informe()
 
-informe = empresa.calcular_informe()
+    # Mostrar el informe
+    print("\nInforme de la empresa:")
+    for clave, valor in informe.items():
+    
+        if isinstance(valor, dict):
+            print(valor.items())
+            print(f"{clave}:")
+            for categoria, salario_total in valor.items():
+                print(f"   - Categoría {categoria}: ${salario_total:.2f}")
+        else:
+            print(f"{clave}: {valor}")
 
-# Mostrar el informe
-print("\nInforme de la empresa:")
-for clave, valor in informe.items():
-   
-    if isinstance(valor, dict):
-        print(valor.items())
-        print(f"{clave}:")
-        for categoria, salario_total in valor.items():
-            print(f"   - Categoría {categoria}: ${salario_total:.2f}")
-    else:
-        print(f"{clave}: {valor}")
+        
+     
+ if __name__ == "__main__":
+     main()       
