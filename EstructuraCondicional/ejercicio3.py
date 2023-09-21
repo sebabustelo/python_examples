@@ -13,40 +13,69 @@
 #• Acuario: 21 de enero al 19 de febrero
 #• Piscis: 20 de febrero al 20 de marzo
 
-class Zodiaco:
-    def __init__(self):
-        
-        self.signos = {
-            "Aries": [(21, 3), (20, 4)],
-            "Tauro": [(21, 4), (20, 5)],
-            "Geminis": [(21, 5), (21, 6)],
-            "Cancer": [(22, 6), (23, 7)],
-            "Leo": [(24, 7), (23, 8)],
-            "Virgo": [(24, 8), (23, 9)],
-            "Libra": [(24, 9), (22, 10)],
-            "Escorpio": [(23, 10), (22, 11)],
-            "Sagitario": [(23, 11), (21, 12)],
-            "Capricornio": [(22, 12), (20, 1)],
-            "Acuario": [(21, 1), (19, 2)],
-            "Piscis": [(20, 2), (20, 3)]
-        }
+def obtener_signo(dia, mes):
+    if (mes == 3 and 21 <= dia <= 31) or (mes == 4 and 1 <= dia <= 20):
+        return "Aries"
+    elif (mes == 4 and 21 <= dia <= 30) or (mes == 5 and 1 <= dia <= 20):
+        return "Tauro"
+    elif (mes == 5 and 21 <= dia <= 31) or (mes == 6 and 1 <= dia <= 21):
+        return "Géminis"
+    elif (mes == 6 and 22 <= dia <= 30) or (mes == 7 and 1 <= dia <= 23):
+        return "Cáncer"
+    elif (mes == 7 and 24 <= dia <= 31) or (mes == 8 and 1 <= dia <= 23):
+        return "Leo"
+    elif (mes == 8 and 24 <= dia <= 31) or (mes == 9 and 1 <= dia <= 23):
+        return "Virgo"
+    elif (mes == 9 and 24 <= dia <= 30) or (mes == 10 and 1 <= dia <= 22):
+        return "Libra"
+    elif (mes == 10 and 23 <= dia <= 31) or (mes == 11 and 1 <= dia <= 22):
+        return "Escorpio"
+    elif (mes == 11 and 23 <= dia <= 30) or (mes == 12 and 1 <= dia <= 21):
+        return "Sagitario"
+    elif (mes == 12 and 22 <= dia <= 31) or (mes == 1 and 1 <= dia <= 20):
+        return "Capricornio"
+    elif (mes == 1 and 21 <= dia <= 31) or (mes == 2 and 1 <= dia <= 19):
+        return "Acuario"
+    else:
+        return "Piscis"
 
-    def obtener_signo(self, dia, mes):
-        for signo, fechas in self.signos.items():
-            inicio = fechas[0]
-            fin = fechas[1]
-            if (mes == inicio[1] and dia >= inicio[0]) or (mes == fin[1] and dia <= fin[0]):
-                return signo
-        return "Desconocido"
+def validar_fecha(dia, mes):
+    if 1 <= mes <= 12 and 1 <= dia <= 31:
+        if (mes == 4 or mes == 6 or mes == 9 or mes == 11) and dia > 30:
+            return False
+        elif mes == 2:
+            if (dia > 29) or (dia > 28 and not es_bisiesto()):
+                return False
+        return True
+    return False
+
+def es_bisiesto():
+    # Función para verificar si un año es bisiesto
+    # Un año es bisiesto si es divisible por 4, pero no por 100, a menos que también sea divisible por 400
+    year = int(input("Ingresa el año de tu cumpleaños: "))
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return True
+    else:
+        return False
+
+
+
 
 def main():
-    zodiaco = Zodiaco()
+# Solicitar al usuario el día y mes de su cumpleaños
+    while True:
+        try:
+            dia = int(input("Ingresa el día de tu cumpleaños (1-31): "))
+            mes = int(input("Ingresa el mes de tu cumpleaños (1-12): "))
+            if validar_fecha(dia, mes):
+                break
+            else:
+                print("Fecha no válida. Ingresa una fecha válida.")
+        except ValueError:
+            print("Entrada inválida. Ingresa un número válido para el día y el mes.")
 
-    dia = int(input("Ingrese el día de su cumpleaños: "))
-    mes = int(input("Ingrese el mes de su cumpleaños (en números): "))
-
-    signo = zodiaco.obtener_signo(dia, mes)
-    print("Su signo del zodiaco es:", signo)
+    signo = obtener_signo(dia, mes)
+    print(f"Tu signo del zodíaco es {signo}.")
 
 if __name__ == "__main__":
     main()
