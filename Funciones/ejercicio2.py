@@ -1,7 +1,8 @@
-#Escribir una función que permita la suma 1+2+3+….+n, donde n es la variable que pasa a la función como parámetro.
+
+#Escribir una función que tenga un argumento de tipo entero y que devuelva la letra P si el número es positivo,
+#la letra N si el número es negativo, y la letra C si es cero.
 
 import ejercicio1 as Validador
-
     
 def suma_hasta_n(n):
     
